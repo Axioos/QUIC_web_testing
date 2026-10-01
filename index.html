@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimento QUIC vs TCP</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #111; color: white; }
+        .grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 20px; }
+        img { width: 200px; height: 200px; object-fit: cover; background: #333; border-radius: 8px;}
+    </style>
+</head>
+<body>
+    <h1>Prueba de Carga: QUIC vs TCP</h1>
+    <div class="grid" id="image-container"></div>
+
+    <script>
+        const container = document.getElementById('image-container');
+        
+        // Iteramos 50 veces para crear 50 etiquetas img
+        for (let i = 1; i <= 50; i++) {
+            // Esta fórmula matemática nos da números del 1 al 10 de forma cíclica
+            // Ej: 1, 2, 3... 10, 1, 2, 3... 10
+            const imageNumber = ((i - 1) % 10) + 1; 
+            
+            const img = document.createElement('img');
+            
+            // Apuntamos a la carpeta img/ y mantenemos el parámetro ?v= para 
+            // forzar al navegador a hacer 50 descargas simultáneas reales.
+            img.src = `img/${imageNumber}.jpg?v=${i}`;
+            
+            container.appendChild(img);
+        }
+    </script>
+</body>
+</html>
